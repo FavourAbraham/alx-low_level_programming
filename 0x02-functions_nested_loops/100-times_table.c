@@ -18,43 +18,34 @@ void print_times_table(int n)
 			product = row * column;
 
 			if (column != 0)
-				print_comma_space();
+			{
+				_putchar(',');
+				_putchar(' ');
 
-			print_number(product);
+				if (product < 10)
+				{
+					_putchar(' ');
+					_putchar(' ');
+				}
+				else if (product < 100)
+				{
+					_putchar(' ');
+				}
+			}
+
+			if (product >= 100)
+			{
+				_putchar((product / 100) + '0');
+				_putchar(((product / 10) % 10) + '0');
+			}
+			else if (product >= 10)
+			{
+				_putchar((product / 10) + '0');
+			}
+
+			_putchar((product % 10) + '0');
 		}
 
 		_putchar('\n');
 	}
-}
-
-/**
- * print_number - Prints a number with appropriate formatting.
- * @number: The number to print.
- */
-void print_number(int number)
-{
-	if (number >= 100)
-	{
-		_putchar((number / 100) + '0');
-		print_number(number % 100);
-	}
-	else if (number >= 10)
-	{
-		_putchar((number / 10) + '0');
-		_putchar((number % 10) + '0');
-	}
-	else
-	{
-		_putchar(' ');
-		_putchar((number % 10) + '0');
-	}
-}
-
-/**
- * print_comma_space - Prints a comma and a space.
- */
-void print_comma_space(void)
-{
-	_putchar(',');
-	_putchar(' ');
 }
