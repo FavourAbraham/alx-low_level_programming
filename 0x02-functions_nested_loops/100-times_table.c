@@ -1,23 +1,6 @@
 #include "main.h"
 
 /**
- * print_number - Prints a number.
- * @n: The number to be printed.
- */
-void print_number(int n)
-{
-	if (n >= 10)
-	{
-		print_number(n / 10);
-		_putchar((n % 10) + '0');
-	}
-	else
-	{
-		_putchar(n + '0');
-	}
-}
-
-/**
  * print_times_table - Prints the n times table, starting with 0.
  * @n: The number to print the times table for.
  */
@@ -30,21 +13,48 @@ void print_times_table(int n)
 
 	for (row = 0; row <= n; row++)
 	{
-		_putchar('0');
-
-		for (column = 1; column <= n; column++)
+		for (column = 0; column <= n; column++)
 		{
-			_putchar(',');
-			_putchar(' ');
-
 			product = row * column;
 
-			if (product < 10)
-				_putchar(' ');
-			
+			if (column != 0)
+				print_comma_space();
+
 			print_number(product);
 		}
 
 		_putchar('\n');
 	}
+}
+
+/**
+ * print_number - Prints a number with appropriate formatting.
+ * @number: The number to print.
+ */
+void print_number(int number)
+{
+	if (number >= 100)
+	{
+		_putchar((number / 100) + '0');
+		print_number(number % 100);
+	}
+	else if (number >= 10)
+	{
+		_putchar((number / 10) + '0');
+		_putchar((number % 10) + '0');
+	}
+	else
+	{
+		_putchar(' ');
+		_putchar((number % 10) + '0');
+	}
+}
+
+/**
+ * print_comma_space - Prints a comma and a space.
+ */
+void print_comma_space(void)
+{
+	_putchar(',');
+	_putchar(' ');
 }
