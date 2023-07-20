@@ -14,4 +14,7 @@ void print_most_numbers(void);
 void print_numbers(void);
 int mul(int a, int b);
 unsigned long largest_prime_factor(unsigned long n);
+void print_triangle(int size);
+int largest_prime_factor(long n);
+void print_number(int n);
 #endif
