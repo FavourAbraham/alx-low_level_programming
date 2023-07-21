@@ -1,55 +1,79 @@
 #include "main.h"
-#include <stdio.h>
-#include <math.h>
 
-int main(void)
+/**
+ * _putchar - Custom implementation of putchar
+ * @c: The character to be printed
+ *
+ * Return: On success, 1. On error, -1.
+ */
+int _putchar(char c)
 {
-    long number = 612852475143;
-    int result = largest_prime_factor(number);
-    _putchar(result + '0'); /* Convert the largest prime factor to character and print it */
-    _putchar('\n'); /* Print a new line */
-    return (0);
+    return write(1, &c, 1);
 }
 
-/* Helper function to check if a number is prime */
-int is_prime(long n)
+/**
+ * is_prime - Check if a number is prime
+ * @n: The number to be checked
+ *
+ * Return: 1 if the number is prime, 0 otherwise
+ */
+int is_prime(long int n)
 {
     if (n <= 1)
-        return (0);
+        return 0;
 
-    for (long i = 2; i <= sqrt(n); i++)
+    if (n <= 3)
+        return 1;
+
+    if (n % 2 == 0 || n % 3 == 0)
+        return 0;
+
+    for (long int i = 5; i * i <= n; i += 6)
     {
-        if (n % i == 0)
-            return (0);
+        if (n % i == 0 || n % (i + 2) == 0)
+            return 0;
     }
-    return (1);
+
+    return 1;
 }
 
-/* Function to find the largest prime factor of a given number */
-int largest_prime_factor(long n)
+/**
+ * largest_prime_factor - Find the largest prime factor of a number
+ * @n: The number to find the largest prime factor for
+ *
+ * Return: The largest prime factor of the given number
+ */
+int largest_prime_factor(long int n)
 {
-    long largest_factor = -1;
+    long int largest_factor = 2;
 
-    /* Remove all factors of 2 */
-    while (n % 2 == 0)
+    while (n > largest_factor)
     {
-        largest_factor = 2;
-        n /= 2;
-    }
-
-    /* Now n must be odd, so we can skip even numbers */
-    for (long i = 3; i <= sqrt(n); i += 2)
-    {
-        while (n % i == 0)
+        if (n % largest_factor == 0)
         {
-            largest_factor = i;
-            n /= i;
+            if (is_prime(n / largest_factor))
+                return n / largest_factor;
         }
-    }
 
-    /* If n is still greater than 2, it must be the largest prime factor */
-    if (n > 2)
-        largest_factor = n;
+        largest_factor++;
+    }
 
     return largest_factor;
+}
+
+/**
+ * main - Entry point
+ *
+ * Return: Always 0
+ */
+int main(void)
+{
+    long int num = 612852475143;
+    int largest_prime;
+
+    largest_prime = largest_prime_factor(num);
+    _putchar(largest_prime + '0');
+    _putchar('\n');
+
+    return 0;
 }
