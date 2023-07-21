@@ -1,28 +1,35 @@
-// 10-print_triangle.c
 #include "main.h"
 
 /**
- * print_triangle - prints a triangle of a given size.
- * @size: the size of the triangle
+ * print_triangle - check for a digit
+ * @size : integer type
+ * Return:void
  */
+
 void print_triangle(int size)
 {
-    int i, j;
 
-    if (size <= 0)
-    {
-        _putchar('\n');
-        return;
-    }
+	int i = 1, ii;
 
-    for (i = 0; i < size; i++)
-    {
-        for (j = 0; j < size - i - 1; j++)
-            _putchar(' ');
+	while (i <= size && size > 0)
+	{
+		ii = 0;
+		while (ii < size - i)
+		{
+			_putchar(' ');
+			ii++;
+		}
+		ii = 0;
+		while (ii < i)
+		{
+			_putchar('#');
+			ii++;
+		}
 
-        for (j = 0; j <= i; j++)
-            _putchar('#');
-
-        _putchar('\n');
-    }
+		_putchar('\n');
+		i++;
+	}
+	if (i == 1)
+		_putchar('\n');
 }
+
