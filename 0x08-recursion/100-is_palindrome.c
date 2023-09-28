@@ -1,5 +1,4 @@
 #include "main.h"
-
 /**
  * check_pal - checks if characters are equal recursively
  * @s: string to check
@@ -16,7 +15,6 @@ int check_pal(char *s, int i, int len)
         return (0);
     return (check_pal(s, i + 1, len - 1));
 }
-
 /**
  * is_palindrome - checks if a string is a palindrome
  * @s: string to check
@@ -25,13 +23,11 @@ int check_pal(char *s, int i, int len)
  */
 int is_palindrome(char *s)
 {
-    int len = _strlen_recursion(s);
-    
+    int len = _strlen_recursion(s); 
     if (len <= 1)
         return (1);
     return (check_pal(s, 0, len));
 }
-
 /**
  * _strlen_recursion - returns the length of a string recursively
  * @s: string to calculate the length
