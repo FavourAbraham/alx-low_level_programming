@@ -1,24 +1,34 @@
-#include <stdio.h>
 #include "main.h"
+#include <stdio.h>
+#include <stdlib.h>
 
-void print_binary(unsigned long int n) {
-    if (n == 0) {
-        putchar('0');
-        return;
-    }
+/**
+ * print_binary - It is a new function which print the binar of a dec num
+ * @n: numb param
+ * Return: 0
+ */
+void print_binary(unsigned long int n)
+{
+	int j, mine = 0;
+	unsigned long int holder;
 
-    int i;
-    int leadingZero = 1;
+	for (j = 63; j >= 0; j--)
+	{
+		holder = n >> j;
 
-    for (i = (sizeof(unsigned long int) * 8) - 1; i >= 0; i--) {
-        unsigned long int mask = 1UL << i;
+		if (holder & 1)
+		{
+		        putchar('1');
+		 	mine++;
+		}
+		else if (mine)
+		{
+		        putchar('0');
+		}
+	}
 
-        if (n & mask) {
-            putchar('1');
-            leadingZero = 0;
-        } else if (!leadingZero) {
-            putchar('0');
-        }
-    }
+	if (!mine)
+	{
+        	 putchar('0');
+	}
 }
-
